@@ -1,0 +1,29 @@
+{
+	"name": "igniting-app",
+	"version": "1.0.0",
+	"description": "Namaste-React Series",
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Gaurav-GD24/Namaste-React.git"
+	},
+	"author": "Gaurav",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Gaurav-GD24/Namaste-React/issues"
+	},
+	"homepage": "https://github.com/Gaurav-GD24/Namaste-React#readme",
+	"devDependencies": {
+		"parcel": "^2.11.0",
+		"process": "^0.11.10"
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"browserslist": [
+		"last 2 versions"
+	]
+}
