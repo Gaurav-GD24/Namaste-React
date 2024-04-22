@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 //Header
 const navItems = (
 	<ul>
@@ -10,6 +10,13 @@ const navItems = (
 
 const Header = () => {
 	const [reactBtn, setReactBtn] = useState("login");
+
+	console.log("Header called");
+
+	useEffect(() => {
+		console.log("useEffect called");
+	}, []);
+
 
 	return (
 		<div className="container header">
