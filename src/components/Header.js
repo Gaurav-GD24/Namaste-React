@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 //Header
 const navItems = (
 	<ul>
-		<li>about</li>
-		<li>explore</li>
-		<li>contact</li>
+		<li>Home</li>
+		<li>
+			<Link to="/about">About Us</Link>
+		</li>
+		<li>
+			<Link to="/contact">Contact Us</Link>
+		</li>
+		<li>Cart</li>
 	</ul>
 );
 
 const Header = () => {
 	const [reactBtn, setReactBtn] = useState("login");
-
-	console.log("Header called");
-
-	useEffect(() => {
-		console.log("useEffect called");
-	}, []);
-
 
 	return (
 		<div className="container header">
