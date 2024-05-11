@@ -29,8 +29,7 @@ const RestroMenu = () => {
 		resInfo?.cards[2]?.card?.card?.info;
 
 	const { itemCards } =
-		resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card
-			?.card;
+		resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards[3].card.card;
 
 	return (
 		<div className="menu">
@@ -39,13 +38,16 @@ const RestroMenu = () => {
 			<h5>{costForTwoMessage}</h5>
 			<br></br>
 			<h5>Main Course</h5>
-			<ul>
-				{itemCards.map((item) => (
-					<li key={item.card.info.id}>
-						{item.card.info.name}- Rs.{item.card.info.price / 100}
-					</li>
-				))}
-			</ul>
+			{
+				<ul>
+					{itemCards.map((item) => (
+						<li key={item.card.info.id}>
+							{item.card.info.name}- Rs.
+							{item.card.info.price / 100}
+						</li>
+					))}
+				</ul>
+			}
 		</div>
 	);
 };
