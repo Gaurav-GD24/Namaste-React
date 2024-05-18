@@ -6,9 +6,9 @@ const Header = () => {
 	const [reactBtn, setReactBtn] = useState("login");
 	const onlineStatus = useCheckInternetConnection();
 	return (
-		<div className="container header">
+		<div className="flex justify-between items-center p-8 border-b-2">
 			<a>logo</a>
-			<ul>
+			<ul className="flex justify-between gap-8">
 				<li>Internet connection : {onlineStatus ? "✅" : "🟥"}</li>
 				<li>
 					<Link to="/">Home</Link>
@@ -21,8 +21,7 @@ const Header = () => {
 				</li>
 				<li>Cart</li>
 			</ul>
-			<button
-				className="login"
+			<button className="border-2 px-6 rounded-[4px] py-1  border-green-500"
 				onClick={() => {
 					reactBtn === "login"
 						? setReactBtn("logout")
