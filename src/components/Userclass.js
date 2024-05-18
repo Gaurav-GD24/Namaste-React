@@ -22,9 +22,9 @@ class Userclass extends React.Component {
 			userInfo: json,
 		});
 	}
+    
 	render() {
 		// console.log("child render called");
-        
         const{name , bio } = this.state.userInfo;
 
 		return (
