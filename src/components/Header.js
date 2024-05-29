@@ -7,7 +7,9 @@ const Header = () => {
 	const onlineStatus = useCheckInternetConnection();
 	return (
 		<div className="flex justify-between items-center p-8 border-b-2">
-			<a>logo</a>
+			<Link to="/" className="font-bold tracking-wide">
+				FOOD
+			</Link>
 			<ul className="flex justify-between gap-8">
 				<li>Internet connection : {onlineStatus ? "✅" : "🟥"}</li>
 				<li>
@@ -21,7 +23,8 @@ const Header = () => {
 				</li>
 				<li>Cart</li>
 			</ul>
-			<button className="border-2 px-6 rounded-[4px] py-1  border-green-500"
+			<button
+				className="border-2 px-6 rounded-[4px] py-1  border-green-500"
 				onClick={() => {
 					reactBtn === "login"
 						? setReactBtn("logout")

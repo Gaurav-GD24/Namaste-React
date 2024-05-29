@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useCheckInternetConnection from "../utils/useCheckInternetConnection";
@@ -9,6 +9,8 @@ const Body = () => {
 	const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
 	const [searchText, setSearchText] = useState("");
+
+	const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
 	useEffect(() => {
 		fetchData();
@@ -75,8 +77,8 @@ const Body = () => {
 					</button>
 				</div>
 
-				<button 
-                    className="bg-green-500 px-4 py-[1.5px] text-white rounded-[6px]"
+				<button
+					className="bg-green-500 px-4 py-[1.5px] text-white rounded-[6px]"
 					onClick={() => {
 						const filterLogic = listOfRestaurant.filter((res) => {
 							return res.info.avgRating > 4;
@@ -93,7 +95,11 @@ const Body = () => {
 						to={"/restaurants/" + restaurant.info.id}
 						key={restaurant.info.id}
 					>
-						<RestaurantCard resData={restaurant} />
+						{restaurant.info.promoted ? (
+							<RestaurantCardPromoted resData={restaurant} />
+						) : (
+							<RestaurantCard resData={restaurant} />
+						)}
 					</Link>
 				))}
 			</div>
