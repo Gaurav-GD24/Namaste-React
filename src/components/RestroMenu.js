@@ -2,25 +2,20 @@ import useFetchRestroInfo from "../utils/useFetchRestroInfo";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestroMenu = () => {
 	// creating State-variable
 	const { resId } = useParams();
+	const [showIndex, setShowIndex] = useState(null);
 
 	const resInfo = useFetchRestroInfo(resId);
-
 	if (resInfo === null) {
 		return <Shimmer />;
 	}
 
 	const { name, cuisines, costForTwoMessage } =
 		resInfo?.cards[2]?.card?.card?.info;
-
-	const { itemCards } =
-		resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card
-			?.card;
-
-	// console.log(resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards);
 
 	// create categories
 	const categories =
@@ -34,6 +29,10 @@ const RestroMenu = () => {
 		);
 
 	// console.log(categories);
+	// toggle functionality
+	const handleToggle = (index) => {
+		setShowIndex((prevIndex) => (prevIndex === index ? null : index));
+	};
 
 	return (
 		<div className="w-full md:w-3/5 mx-auto text-center py-2 leading-tight">
@@ -44,8 +43,12 @@ const RestroMenu = () => {
 			</div>
 
 			<div className="bg-gray-100/50 rounded p-4">
-				{categories.map((category) => (
-					<RestaurantCategory data={category?.card?.card} />
+				{categories.map((category, index) => (
+					<RestaurantCategory
+						data={category?.card?.card}
+						showItems={index === showIndex && true}
+						setShowIndex={() => handleToggle(index)}
+					/>
 				))}
 			</div>
 		</div>
