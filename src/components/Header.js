@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useCheckInternetConnection from "../utils/useCheckInternetConnection";
 import userContextFile from "../utils/userContextFile";
+import { useSelector } from "react-redux";
 
 const Header = () => {
 	const [reactBtn, setReactBtn] = useState("login");
@@ -10,6 +11,8 @@ const Header = () => {
 
 	// Inside the data variable we stored a context information with the help of 'useContext()' hook.
 	const data = useContext(userContextFile);
+	//
+	const cart = useSelector((store) => store.cart.items);
 
 	return (
 		<div className="flex justify-between items-center p-8 border-b-2">
@@ -27,8 +30,8 @@ const Header = () => {
 				<li>
 					<Link to="/contact">Contact Us</Link>
 				</li>
-				<li>
-					<Link to="/cart">Cart</Link>
+				<li className="text-lg font-semibold">
+					<Link to="/cart">Cart ({cart.length})</Link>
 				</li>
 				<button
 					className="border-2 px-6 rounded-[4px] py-1  border-green-500"

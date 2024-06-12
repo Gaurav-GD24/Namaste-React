@@ -7,8 +7,10 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestroMenu from "./components/RestroMenu";
 import userContextFile from "./utils/userContextFile";
+import { Provider } from "react-redux";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import appStore from "./utils/appStore";
 
 const AppLayout = () => {
 	const [userName, setUsername] = useState();
@@ -23,12 +25,14 @@ const AppLayout = () => {
 	}, []);
 
 	return (
-		<userContextFile.Provider value={{ loggedInUser: userName }}>
-			<main className="app__layout">
-				<Header />
-				<Outlet />
-			</main>
-		</userContextFile.Provider>
+		<Provider store={appStore}>
+			<userContextFile.Provider value={{ loggedInUser: userName }}>
+				<main className="app__layout">
+					<Header />
+					<Outlet />
+				</main>
+			</userContextFile.Provider>
+		</Provider>
 	);
 };
 
