@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useCheckInternetConnection from "../utils/useCheckInternetConnection";
+import userContextFile from "../utils/userContextFile";
 
 const Header = () => {
 	const [reactBtn, setReactBtn] = useState("login");
+
 	const onlineStatus = useCheckInternetConnection();
+
+	// Inside the data variable we stored a context information with the help of 'useContext()' hook.
+	const data = useContext(userContextFile);
+
 	return (
 		<div className="flex justify-between items-center p-8 border-b-2">
 			<Link to="/" className="font-bold tracking-wide">
 				FOOD
 			</Link>
-			<ul className="flex justify-between gap-8">
+			<ul className="flex justify-between items-center gap-8">
 				<li>Internet connection : {onlineStatus ? "✅" : "🟥"}</li>
 				<li>
 					<Link to="/">Home</Link>
@@ -21,18 +27,24 @@ const Header = () => {
 				<li>
 					<Link to="/contact">Contact Us</Link>
 				</li>
-				<li>Cart</li>
+				<li>
+					<Link to="/cart">Cart</Link>
+				</li>
+				<button
+					className="border-2 px-6 rounded-[4px] py-1  border-green-500"
+					onClick={() => {
+						reactBtn === "login"
+							? setReactBtn("logout")
+							: setReactBtn("login");
+					}}
+				>
+					{reactBtn}
+				</button>
 			</ul>
-			<button
-				className="border-2 px-6 rounded-[4px] py-1  border-green-500"
-				onClick={() => {
-					reactBtn === "login"
-						? setReactBtn("logout")
-						: setReactBtn("login");
-				}}
-			>
-				{reactBtn}
-			</button>
+			{/* add here we are using context data inside below list tag */}
+			<li className="font-semibold border-2 rounded-lg p-2 list-none">
+				{data.loggedInUser}
+			</li>
 		</div>
 	);
 };

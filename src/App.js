@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -6,15 +6,29 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestroMenu from "./components/RestroMenu";
+import userContextFile from "./utils/userContextFile";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 const AppLayout = () => {
+	const [userName, setUsername] = useState();
+
+	// suppose we fetch a new information about user and want to updated the information.
+	useEffect(() => {
+		// here hypothetically we get a info and stored it inside the data.
+		const data = {
+			name: "Gaurav D",
+		};
+		setUsername(data.name);
+	}, []);
+
 	return (
-		<main className="app__layout">
-			<Header />
-			<Outlet />
-		</main>
+		<userContextFile.Provider value={{ loggedInUser: userName }}>
+			<main className="app__layout">
+				<Header />
+				<Outlet />
+			</main>
+		</userContextFile.Provider>
 	);
 };
 

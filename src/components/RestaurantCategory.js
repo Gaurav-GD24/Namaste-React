@@ -7,7 +7,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
 	};
 
 	return (
-		<div className=" py-2 px-8 w-full mt-3 bg-white rounded shadow">
+		<div className="py-2 px-8 w-full mt-3 bg-white rounded shadow">
 			<div
 				className="flex justify-between cursor-pointer"
 				onClick={handleClick}
