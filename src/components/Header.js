@@ -11,8 +11,8 @@ const Header = () => {
 
 	// Inside the data variable we stored a context information with the help of 'useContext()' hook.
 	const data = useContext(userContextFile);
-	//
-	const cart = useSelector((store) => store.cart.items);
+	//here we get the items from the store
+	const cartItems = useSelector((store) => store.cart.items);
 
 	return (
 		<div className="flex justify-between items-center p-8 border-b-2">
@@ -31,8 +31,8 @@ const Header = () => {
 					<Link to="/contact">Contact Us</Link>
 				</li>
 				<li className="text-lg font-semibold">
-					<Link to="/cart">Cart ({cart.length})</Link>
-				</li>
+					<Link to="/cart">Cart-({cartItems.length} items)</Link>
+				</li>   
 				<button
 					className="border-2 px-6 rounded-[4px] py-1  border-green-500"
 					onClick={() => {

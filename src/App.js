@@ -8,9 +8,9 @@ import Error from "./components/Error";
 import RestroMenu from "./components/RestroMenu";
 import userContextFile from "./utils/userContextFile";
 import { Provider } from "react-redux";
-
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import appStore from "./utils/appStore";
+import CartPage from "./components/CartPage";
 
 const AppLayout = () => {
 	const [userName, setUsername] = useState();
@@ -56,6 +56,10 @@ const appRouter = createBrowserRouter([
 			{
 				path: "/restaurants/:resId",
 				element: <RestroMenu />,
+			},
+			{
+				path: "/cart",
+				element: <CartPage />,
 			},
 		],
 		errorElement: <Error />,

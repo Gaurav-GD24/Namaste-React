@@ -1,7 +1,17 @@
+import { useDispatch } from "react-redux";
 import { IMG_URL } from "../utils/constants";
+import { addItems } from "../utils/cartSlice";
 
 const RestaurantCategoryItems = ({ items }) => {
-	console.log(items);
+	// console.log(items);
+
+	const dispatch = useDispatch();
+
+	const handleAddItem = (item) => {
+		// dispatch and action , we import and pass addItems action from 'cartSlice.js'
+		dispatch(addItems(item));
+	};
+
 	return (
 		<div className="p-3">
 			{items.map((item) => (
@@ -16,7 +26,7 @@ const RestaurantCategoryItems = ({ items }) => {
 						<span className="font-semibold mx-3">
 							₹ {item?.card?.info?.price / 100}
 						</span>
-						<div className="mt-4">
+						<div className="mt-2">
 							<p className="text-sm text-gray-500 ">
 								{item?.card?.info?.description}
 							</p>
@@ -27,7 +37,10 @@ const RestaurantCategoryItems = ({ items }) => {
 							src={IMG_URL + item?.card?.info?.imageId}
 							className="h-full w-full rounded-lg overflow-hidden object-cover object-top"
 						/>
-						<button className="px-4 py-1 rounded-xl bg-white text-black font-semibold text-sm absolute left-6 bottom-[6px] shadow-lg border-2">
+						<button
+							className="px-4 py-1 rounded-xl bg-white text-black font-semibold text-sm absolute left-6 bottom-[6px] shadow-lg border-2"
+							onClick={() => handleAddItem(item)}
+						>
 							Add +
 						</button>
 					</div>
