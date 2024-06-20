@@ -5,11 +5,13 @@ import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
 
 const RestroMenu = () => {
-	// creating State-variable
+	
 	const { resId } = useParams();
 	const [showIndex, setShowIndex] = useState(null);
 
 	const resInfo = useFetchRestroInfo(resId);
+
+
 	if (resInfo === null) {
 		return <Shimmer />;
 	}
